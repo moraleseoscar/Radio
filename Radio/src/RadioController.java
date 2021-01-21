@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 /**
- * @author Oscar Estrada y Lorena Beltran
+ * @author Oscar Estrada y Lorena Beltrán
  *
  */
 public class RadioController implements InterfaceRadio{
