@@ -1,16 +1,16 @@
 import java.util.ArrayList;
 
 /**
- * @author Oscar Estrada y Lorena Beltrán
+ * @author Oscar Estrada y Lorena Beltran
  *
  */
 public class RadioController implements InterfaceRadio{
-
+	
 	private boolean power;
 	private String frecuencia;
 	private double emisora_seleccionada;
 	private ArrayList<Double> emisoras;
-
+	
 	/**
 	 * @param power
 	 * @param frecuencia
@@ -51,6 +51,7 @@ public class RadioController implements InterfaceRadio{
 			}else {
 				posicion = (posicion == 87.9)?107.9:posicion -0.2;
 			}
+			posicion = Math.round(posicion*100.0)/100.0;
 		}
 		emisora_seleccionada = posicion;
 		cadena = cadena + emisora_seleccionada + " " + frecuencia + "...";
@@ -68,7 +69,7 @@ public class RadioController implements InterfaceRadio{
 			emisora_seleccionada = 1070;
 		}
 	}
-
+	
 	@Override
 	public boolean obtenerPoder() {
 		return power;
@@ -94,11 +95,11 @@ public class RadioController implements InterfaceRadio{
 			}else {
 				cadena = cadena + posicion + ".) "+ em + " FM\n";
 			}
-
+			
 		}
 		return cadena;
 	}
-
+	
 	@Override
 	public String seleccionar_guardada(int posicion) {
 		// TODO Auto-generated method stub
@@ -107,8 +108,26 @@ public class RadioController implements InterfaceRadio{
 			cadena = "Parece que no tienes una emisora en ese espacio.";
 		}else {
 			emisora_seleccionada = emisoras.get(posicion);
+			String f = "";
+			if(emisora_seleccionada-(int)emisora_seleccionada==0) {
+				frecuencia = "AM";
+			}else {
+				frecuencia = "FM";
+			}
 			cadena = cadena + emisora_seleccionada + " " + frecuencia + "... ";
 		}
+		return cadena;
+	}
+	
+	@Override
+	public String mostrarEstado() {
+		// TODO Auto-generated method stub
+		String cadena = "";
+		String estado = (power)?"Encendido":"Apagado";
+		String emi = (!power)?"Sin reproducciones aun":""+emisora_seleccionada;
+		String frec = (!power)?"":""+frecuencia;
+		
+		cadena = "Estado del Radio: "+ estado + "\nReproduciendo: "+ emi + " " + frec + "\n";
 		return cadena;
 	}
 
