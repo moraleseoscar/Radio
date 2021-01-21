@@ -1,5 +1,5 @@
 /**
- * @author Grupo 2
+ * @author Oscar Estrada y Lorena Beltrán
  *
  */
 public interface InterfaceRadio {

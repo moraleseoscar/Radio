@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 /**
- * @author Oscar Estrada y Lorena Beltran
+ * @author Oscar Estrada y Lorena Beltrán
  *
  */
 public class Main {
