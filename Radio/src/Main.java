@@ -17,13 +17,13 @@ public class Main {
 		boolean menu = true;
 
         while(menu) {
-        	String estado = (radio.obtenerPoder())?"Encendido":"Apagado";
+        	
         	System.out.println("");
         	System.out.println("+----------------------------------+");
             System.out.println("|          Simulacion iPod         |");
             System.out.println("+----------------------------------+");
             System.out.println("");
-            System.out.println("Estado de radio: "  + estado);
+            System.out.println(radio.mostrarEstado());
             System.out.println("");
             System.out.println("1. Encender/Apagar.");
             System.out.println("2. Cambiar frecuencia (AM/FM).");
@@ -86,34 +86,27 @@ public class Main {
                     
                     System.out.print("Ingrese el numero de la emisora que desee guardar: ");
                     double vo = sc.nextDouble();
+                    vo = round(vo, 2);
                     sc.nextLine();
                     boolean completo = true;             
                     if(cam.equals("1")) {
-                    	while(completo){
-                    		while(vo < 530 || vo > 1610) {
-                            	System.out.print("Seleccion fuera de rango. Intente de nuevo:");
-                            	vo = sc.nextDouble();
-                                sc.nextLine();
-                    		}
-                    		if(vo-(int)vo==0 && vo % 10 == 0) {
-                				completo = false;
-                			}else {
-                				System.out.print("Parece que eso no es una emisora AM. Intente de nuevo:");
-                			}
-                    	}
+	            		int valor = (int)vo %10;
+	            		while(vo < 530 || vo > 1610 || valor != 0) {
+	                    	System.out.print("Parece que eso no es una emisora AM. Intente de nuevo:");
+	                    	vo = sc.nextDouble();
+	                        sc.nextLine();
+	                        valor = (int)vo %10;
+	            		}
                     }else {
-                    	while(completo){
-                    		while(vo < 87.9 || vo > 107.9) {
-                            	System.out.print("Seleccion fuera de rango. Intente de nuevo:");
-                            	vo = sc.nextDouble();
-                                sc.nextLine();
-                    		}
-                    		if(vo-(int)vo!=0 && (vo-(int)vo==1 || vo-(int)vo==3 || vo-(int)vo==7 || vo-(int)vo==9)) {
-                				completo = false;
-                			}else {
-                				System.out.print("Parece que eso no es una emisora FM. Intente de nuevo:");
-                			}
-                    	}
+                    	double valor = vo-(int)vo;
+                    	valor = round(valor, 1);
+	            		while(vo < 87.9 || vo > 107.9 || !(valor == 0.1 || valor == 0.3 || valor == 0.5 || valor == 0.7 || valor == 0.9)) {
+	                    	System.out.print("Parece que eso no es una emisora FM. Intente de nuevo:");
+	                    	vo = sc.nextDouble();
+	                        sc.nextLine();
+	                        valor = vo-(int)vo;
+	                    	valor = round(valor, 1);
+	            		}
                     }
                     System.out.print("Ingrese en que posicion quiere colocarlo: ");
                     int po = sc.nextInt();

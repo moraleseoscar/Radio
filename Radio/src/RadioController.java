@@ -5,12 +5,12 @@ import java.util.ArrayList;
  *
  */
 public class RadioController implements InterfaceRadio{
-	
+
 	private boolean power;
 	private String frecuencia;
 	private double emisora_seleccionada;
 	private ArrayList<Double> emisoras;
-	
+
 	/**
 	 * @param power
 	 * @param frecuencia
@@ -68,7 +68,7 @@ public class RadioController implements InterfaceRadio{
 			emisora_seleccionada = 1070;
 		}
 	}
-	
+
 	@Override
 	public boolean obtenerPoder() {
 		return power;
@@ -94,11 +94,11 @@ public class RadioController implements InterfaceRadio{
 			}else {
 				cadena = cadena + posicion + ".) "+ em + " FM\n";
 			}
-			
+
 		}
 		return cadena;
 	}
-	
+
 	@Override
 	public String seleccionar_guardada(int posicion) {
 		// TODO Auto-generated method stub
